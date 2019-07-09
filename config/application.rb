@@ -19,6 +19,7 @@ Bundler.require
 # Bundler.require(*Rails.groups)
 
 # heroku buildpack-ruby
+require 'toml-rb'
   gem "toml-rb"
   gem "heroku_hatchet"
   gem "rspec-core"
