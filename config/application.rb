@@ -15,10 +15,10 @@ require "action_cable/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require
+# Bundler.require(*Rails.groups)
 
-# heroku buildpack-ruby 
-group :development, :test do
+# heroku buildpack-ruby
   gem "toml-rb"
   gem "heroku_hatchet"
   gem "rspec-core"
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'json', '~> 2.0.2'
   gem 'ci-queue'
   gem 'redis'
-end
+
 
 module Ggbackend
   class Application < Rails::Application
