@@ -17,6 +17,23 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# heroku buildpack-ruby 
+group :development, :test do
+  gem "toml-rb"
+  gem "heroku_hatchet"
+  gem "rspec-core"
+  gem "rspec-expectations"
+  gem "excon"
+  gem "rake"
+  gem "parallel_tests"
+  gem 'rspec-retry'
+  gem "netrc"
+  gem "git", github: "hone/ruby-git", branch: "master"
+  gem 'json', '~> 2.0.2'
+  gem 'ci-queue'
+  gem 'redis'
+end
+
 module Ggbackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
