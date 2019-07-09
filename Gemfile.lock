@@ -168,6 +168,17 @@ GEM
     rspec-expectations (3.8.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
     rspec-retry (0.6.1)
       rspec-core (> 3.3)
     rspec-support (3.8.2)
@@ -219,6 +230,7 @@ DEPENDENCIES
   redis
   rspec-core
   rspec-expectations
+  rspec-rails (~> 3.5)
   rspec-retry
   spring
   spring-watcher-listen (~> 2.0.0)
