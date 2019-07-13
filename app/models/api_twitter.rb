@@ -32,10 +32,23 @@ OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
     Tweet.create(
       tweet_id: tweet['id_str'],
       created_at: tweet['created_at'],
-      name:tweet['user']['name'],
+      lang: tweet['user']['lang'],
+      user_name:tweet['user']['name'],
+      user_profile_id:['user']['id_str'],
       handle:tweet['user']['screen_name'],
       content:tweet['text'],
-      profile_image_url: tweet['user']['profile_image_url_https']
+      profile_image_url: tweet['user']['profile_image_url_https'],
+      location: tweet['user']['location'],
+      favorites:tweet['user']['favorite_count'],
+      retweets: tweet['user']['retweet_count'],
+      user_mentions:tweet['entities']['user_mentions'],
+      urls: tweet['entities']['urls'],
+      hashtags: tweet['entities']['hashtags'],
+      media_url:tweet['extended_entities']['media']['url'] tweet['extended_entities']['media']['expanded_url'],
+      media_type: tweet['extended_entities']['media']['type'],
+      user:tweet['user'],
+      entities:tweet[]['entities'],
+      extended_entities:tweet[]['extended_entities']
     )
   end
 
