@@ -1,17 +1,18 @@
 class TweetsController < ApplicationController
 
-  def index
-    # tweets = Tweet.all
+  def new
     twitter_api = ApiTwitter.new
     tweets_from_api = twitter_api.home_line
-
-    tweets_from_app = tweets_from_api.map do |tweet|
-      Tweet.new()
-    end
-
-    render json: tweets_from_app
   end
 
+  def index
+    tweets = Tweet.all
+    render json: tweets
+  end
+
+  def delete
+
+  end
   # def show
   #   @tweet = Tweet.find(params[:id])
   #     format.json {render json @article }

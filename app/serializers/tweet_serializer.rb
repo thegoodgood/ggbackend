@@ -4,7 +4,7 @@ class TweetSerializer < ActiveModel::Serializer
 
   def index
     tweets = Tweet.all
-    render json: birds
+    render json: tweets
   end
 
 # customize url attribute for the tweet

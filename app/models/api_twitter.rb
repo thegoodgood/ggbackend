@@ -1,15 +1,18 @@
+require 'rubygems'
+require 'oauth'
+require 'json'
+
+
 class ApiTwitter
-  CONSUMER_KEY = ENV['CONSUMER_KEY']
-  CONSUMER_SECRET = ENV['CONSUMER_SECRET']
-  OA_TOKEN = ENV['OA_TOKEN']
-  OA_SECRET = ENV['OA_SECRET']
+  puts "start"
+  CONSUMER_KEY= '50zFPAuzH9cqWBfZo6b1MykLn'
+CONSUMER_SECRET= 'UzK7OoeRk6yV5Rz9oCzBaA4PkdvzmYZQv63sGWI4dbrhE6PJcX'
 
-
-  BASE_URI = 'https://api.twitter/1.1/'
-  @uri = "https://api.twitter.com/labs/1/users?usernames=TwitterDev"
+OA_TOKEN= '1089338169034788864-W50IFsQpp4FBZH6rrLia7aMIeib2oV'
+OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
+  BASE_URI= 'https://api.twitter/1.1'
 
   def initialize
-    byebug
     consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET, {
       site: 'https://api.twitter',
       scheme: :header
@@ -22,26 +25,24 @@ class ApiTwitter
   end
 
   def home_line options=nil
-    # JSON.parse(@access_token.request(:get, 'https://api.twitter/1.1/statuses/home/timeline.json',
   values =  JSON.parse(@access_token.request(:get, 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=jobelixte&count=2',
   options)
   .body)
-  puts values
+  values.map do |tweet|
+    Tweet.create(
+      created_at: tweet['created_at'],
+      name:tweet['user']['name'],
+      handle:tweet['user']['screen_name'],
+      content:tweet['text']
+    )
   end
 
 
+  end
 #
-#
- # puts "done"
+# a = ApiTwitter.new
+# a.home_line
 
- # protected
 
- # check if current user has admin access
- # def current_user
- #   OpenStruct.new(admin?: false)
-#   end
-#   helper_method :current_user
- # end
 
- # private
 end
