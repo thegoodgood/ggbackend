@@ -25,15 +25,17 @@ OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
   end
 
   def home_line options=nil
-  values =  JSON.parse(@access_token.request(:get, 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=jobelixte&count=2',
+  values =  JSON.parse(@access_token.request(:get, 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=crissles&count=2',
   options)
   .body)
   values.map do |tweet|
     Tweet.create(
+      tweet_id: tweet['id_str'],
       created_at: tweet['created_at'],
       name:tweet['user']['name'],
       handle:tweet['user']['screen_name'],
-      content:tweet['text']
+      content:tweet['text'],
+      profile_image_url: tweet['user']['profile_image_url_https']
     )
   end
 
