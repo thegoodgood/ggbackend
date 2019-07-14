@@ -10,9 +10,6 @@ class TweetsController < ApplicationController
     render json: tweets
   end
 
-  def delete
-
-  end
   # def show
   #   @tweet = Tweet.find(params[:id])
   #     format.json {render json @article }

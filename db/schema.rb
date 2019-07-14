@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_13_231639) do
+ActiveRecord::Schema.define(version: 2019_07_14_023902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,24 +28,37 @@ ActiveRecord::Schema.define(version: 2019_07_13_231639) do
   end
 
   create_table "hashtags", force: :cascade do |t|
+    t.string "hastags", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tweet_details", force: :cascade do |t|
+    t.string "tweet_id"
+    t.jsonb "tweet_user"
+    t.jsonb "tweet_entities"
+    t.jsonb "tweet_extended_entities"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.string "name"
+    t.string "tweet_id"
+    t.datetime "created_at", null: false
+    t.string "lang"
+    t.string "user_name"
+    t.string "user_profile_id"
     t.string "handle"
     t.text "content"
-    t.string "image"
-    t.date "date"
-    t.integer "likes"
-    t.string "category_id"
-    t.string "integer"
-    t.integer "list_id"
-    t.datetime "created_at", null: false
+    t.string "profile_img_url"
+    t.string "location"
+    t.integer "favorites"
+    t.integer "retweets"
+    t.string "user_mentions", default: [], array: true
+    t.string "urls", default: [], array: true
+    t.string "hashtags", default: [], array: true
+    t.string "media", default: [], array: true
     t.datetime "updated_at", null: false
-    t.string "tweet_id"
-    t.string "profile_image_url"
   end
 
   create_table "twitter_lists", force: :cascade do |t|

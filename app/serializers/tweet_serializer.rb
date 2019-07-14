@@ -1,6 +1,6 @@
 class TweetSerializer < ActiveModel::Serializer
-  attributes :id, :name, :handle, :content, :image, :date, :likes, :category_id, :integer, :list_id
-  has_many :likes
+  attributes :tweet_id, :created_at, :lang, :user_name, :user_profile_id, :handle, :content, :profile_img_url, :location , :favorites , :retweets, :user_mentions, :urls, :hashtags, :media
+
 
   def index
     tweets = Tweet.all

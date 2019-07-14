@@ -24,40 +24,32 @@ OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
     @access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
   end
 
+  values = []
+
   def home_line options=nil
-  values =  JSON.parse(@access_token.request(:get, 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=crissles&count=2',
+  return values =  JSON.parse(@access_token.request(:get, 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=crissles&count=2',
   options)
   .body)
-  values.map do |tweet|
-    Tweet.create(
-      tweet_id: tweet['id_str'],
-      created_at: tweet['created_at'],
-      lang: tweet['user']['lang'],
-      user_name:tweet['user']['name'],
-      user_profile_id:['user']['id_str'],
-      handle:tweet['user']['screen_name'],
-      content:tweet['text'],
-      profile_image_url: tweet['user']['profile_image_url_https'],
-      location: tweet['user']['location'],
-      favorites:tweet['user']['favorite_count'],
-      retweets: tweet['user']['retweet_count'],
-      user_mentions:tweet['entities']['user_mentions'],
-      urls: tweet['entities']['urls'],
-      hashtags: tweet['entities']['hashtags'],
-      media_url:tweet['extended_entities']['media']['url'] tweet['extended_entities']['media']['expanded_url'],
-      media_type: tweet['extended_entities']['media']['type'],
-      user:tweet['user'],
-      entities:tweet[]['entities'],
-      extended_entities:tweet[]['extended_entities']
-    )
-  end
 
 
-  end
-#
-# a = ApiTwitter.new
-# a.home_line
-
-
-
+      home_line.map do |tweet|
+  Tweet.create(
+    tweet_id: tweet['id_str'],
+    created_at: tweet['created_at'],
+    lang: tweet['user']['lang'],
+    user_name: tweet['user']['name'],
+    user_profile_id: tweet['user']['id_str'],
+    handle:tweet['user']['screen_name'],
+    content:tweet['text'],
+    profile_img_url: tweet["user"]["profile_image_url_https"],
+    location: tweet['user']['location'],
+    favorites:tweet['user']['favorite_count'],
+    retweets: tweet['user']['retweet_count'],
+    user_mentions:tweet['entities']['user_mentions'],
+    urls: tweet['entities']['urls'],
+    hashtags: tweet['entities']['hashtags'],
+    media: tweet['entities']['media']
+  )
+end
+end
 end
