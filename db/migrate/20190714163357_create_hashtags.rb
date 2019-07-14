@@ -1,7 +1,8 @@
 class CreateHashtags < ActiveRecord::Migration[5.2]
   def change
     create_table :hashtags do |t|
-      t.string :hastags, array: true, default:[]
+      t.string :keyword
+
       t.timestamps
     end
   end
