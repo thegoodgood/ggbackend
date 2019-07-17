@@ -1,3 +1,3 @@
 class HashtagSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :keyword
 end

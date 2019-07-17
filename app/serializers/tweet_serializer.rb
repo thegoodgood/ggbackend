@@ -7,6 +7,7 @@ class TweetSerializer < ActiveModel::Serializer
     render json: tweets
   end
 
+
 # customize url attribute for the tweet
   # def url
   #   tweet_url(object)
