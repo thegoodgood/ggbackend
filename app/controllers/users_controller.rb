@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-  #
-  # def index
-  #   # @users = User.all
-  # end
-  #
-  # def new
-  # @user = User.new
-  # end
-  # ​
+
+  def index
+    users = User.all
+    render json: users
+  end
+
+end
+  ​
   # def create
   #   @user = User.create(name: params[:user][:name])
   #   redirect_to users_path
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
   # private
   #
   # def get_params
-  #   params.require(:users).permit!
+  #   params.require(:user).permit!
   # end
 
-end
+# end
