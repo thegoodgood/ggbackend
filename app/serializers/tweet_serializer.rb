@@ -2,12 +2,6 @@ class TweetSerializer < ActiveModel::Serializer
   attributes :tweet_id, :created_at, :lang, :user_name, :user_profile_id, :handle, :content, :profile_img_url, :location , :favorites , :retweets, :user_mentions, :urls, :hashtags, :media
 
 
-  def index
-    tweets = Tweet.all
-    render json: tweets
-  end
-
-
 # customize url attribute for the tweet
   # def url
   #   tweet_url(object)
