@@ -39,11 +39,15 @@ config.autoload_paths << "#{Rails.root}/lib"
     config.api_only = true
 
 #---versus this block?
-  #   config.middleware.insert_before 0, "Rack::Cors" do
-  #     allow do
-  #       origins '*'
-  #       resource '*', headers: :any, methods: [:get, :post, :options]
-  #     end
-  #   end
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins '*'
+    #     resource '*',
+    #     headers: {'Content-Type': '*',
+    #       'Access-Control-Allow-Origin': '*'
+    #     },
+    #     methods: [:get, :post, :put, :patch, :delete, :options, :head]
+    #   end
+    # end
   end
 end
