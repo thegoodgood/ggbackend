@@ -6,7 +6,7 @@ class HashtagsController < ApplicationController
   end
 
   def create
-    hashtag = Hashtag.create(params[:hashtag]
+    hashtag = Hashtag.create(params[:hashtag])
   end
 
 
