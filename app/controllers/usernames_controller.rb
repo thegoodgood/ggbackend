@@ -7,7 +7,7 @@ class UsernamesController < ApplicationController
     if username.valid?
       render json: { token: encode_token(username_Payload(username))}
     else
-      render json: {errors: username.errors.full_mesages}
+      render json: {message: 'Invalid username or password'}
     end
   end
 

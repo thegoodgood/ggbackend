@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :users
   post "/login", to: "auth#login"
-  post "/signup", to: "usernames#create"
-  get "/profile", to: "usernames#profile"
+  post "/signup", to: "users#create"
+  get "/profile", to: "users#profile"
 
   resources :tweets
   resources :hashtags
