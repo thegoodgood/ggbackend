@@ -1,10 +1,23 @@
 Rails.application.routes.draw do
+  post "/login", to: "auth#login"
+  post "/signup", to: "usernames#create"
+  get "/profile", to: "usernames#profile"
+
   resources :tweets
   resources :hashtags
   resources :twitter_lists
   resources :twitter_accounts
   resources :follows
-  # resources :users
-  # get "/users", to: "users#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+  namespace :avi do
+    namespace :v1 do
+      resources :usernames, only: [:create]
+      # post "/login", to: "auth#login"
+
+      # get "/profile", to: "users#profile"
+
+    end
+  end
+
 end
