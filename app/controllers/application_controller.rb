@@ -1,12 +1,13 @@
 # require "ActionController"
 class ApplicationController < ActionController::API
+  # before_action :authorized
 
   def encode_token(payload)
     JWT.encode payload, "my_secret", "HS256"
   end
 
-  def username_payload(username)
-    {username_id: username.id}
+  def user_payload(user)
+    {user_id: user.id}
   end
 
   def secret
@@ -14,22 +15,35 @@ class ApplicationController < ActionController::API
   end
 
   def token
-    request.headers["Authorization"]
+    request.headers["Authorization"].split(' ')[1] if request.headers["Authorization"]
   end
 
   def decoded_token
-    JWT.decode token, "my_secret", true, {algorithm: "HS256"}
+    begin
+      JWT.decode token, "my_secret", true, { algorithm: "HS256" }
+    rescue JWT::DecodeError
+      nil
+    end
   end
 
-#   def logged_in?
-#   !!current_user
-# end
+  def current_user
+    User.find(decoded_token[0]["user_id"]) if decoded_token
+  end
+
+
+  def logged_in?
+  !!current_user
+end
+
+def authorized
+  render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
+end
 
 
 end
   #
   # def create
-  #   @username = Username.create(get_params)
+  #   @user = Username.create(get_params)
   #
   #   if @username.valid?
   #     render json: { username: UsernameSerializer.new(@username) }, status: :created
