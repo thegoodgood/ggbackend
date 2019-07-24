@@ -14,8 +14,8 @@ class ApplicationController < ActionController::API
 
 
   def token
+    # byebug
    request.headers["Authorization"].split(' ')[1] if request.headers["Authorization"]
-   puts "hi"
  end
 
  def decoded_token

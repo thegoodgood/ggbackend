@@ -1,4 +1,4 @@
-# require 'byebug'
+require 'byebug'
 class UsersController < ApplicationController
 
   def create
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def get_params
     params.permit(:username, :password)
+    # params.permit!
   end
 
 end
