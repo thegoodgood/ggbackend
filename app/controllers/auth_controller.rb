@@ -8,7 +8,7 @@ def create
    is_authenticated = user.authenticate(params[:password]) if user
 
    if is_authenticated
-     # byebug
+
      render json: { token: encode_token(user) }
    else
      render json: { error: "Wrong username and/or password. Sorry!" }

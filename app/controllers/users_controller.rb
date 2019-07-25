@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   end
 
   def profile
-    render json: current_user, include: "**"
+
+    # render json: { current_user: UserSerializer.new(current_user) }, status: :accepted  #<----sylwia way
+    render json: current_user #include: "**"  #<--Kevin way
   end
 
   private

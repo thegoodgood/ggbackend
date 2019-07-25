@@ -11,10 +11,8 @@ class ApplicationController < ActionController::API
     { user_id: user.id }
   end
 
-
-
   def token
-    # byebug
+
    request.headers["Authorization"].split(' ')[1] if request.headers["Authorization"]
  end
 
@@ -27,10 +25,13 @@ class ApplicationController < ActionController::API
 end
 
     def current_user
-      User.find(decoded_token[0]["user_id"]) if decoded_token
+      # byebug
+      # current_user = User.find_by(username: params[:username])
+      User.find(decoded_token[0]["user_id"]) if decoded_token #<--kevin way
     end
 
     def logged_in?
+      # byebug
       !!current_user
     end
 

@@ -8,7 +8,12 @@ class HashtagsController < ApplicationController
   def create
     hashtag = Hashtag.create(params[:hashtag])
   end
-
+  def show
+      hashtag = Hashtag.find(params[id])
+      twitter_client = TwitterApi.new
+      tweets = twitter_client.get_tweets_from_hashtag(hashtag.name)
+      render json: tweets
+  end
 
   private
 

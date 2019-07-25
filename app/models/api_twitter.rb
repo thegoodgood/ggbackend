@@ -52,4 +52,8 @@ OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
   )
 end
 end
+
+def get_tweets_from_hashtag(hastag)
+
+end
 end
