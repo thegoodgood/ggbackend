@@ -1,2 +1,0 @@
-class TwitterList < ApplicationRecord
-end

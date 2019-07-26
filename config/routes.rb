@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lists
   resources :users
   post "/login", to: "auth#create"
   post "/signup", to: "users#create"
@@ -6,9 +7,7 @@ Rails.application.routes.draw do
 
   resources :tweets
   resources :hashtags
-  resources :twitter_lists
   resources :twitter_accounts
-  resources :follows
 
 
   # namespace :avi do
