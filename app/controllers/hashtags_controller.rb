@@ -1,5 +1,5 @@
 class HashtagsController < ApplicationController
-
+skip_before_action :authorized, only: [:create, :new, :index]
   def index
     hashtags = Hashtag.all
     render json: hashtags
@@ -8,6 +8,9 @@ class HashtagsController < ApplicationController
   def create
     hashtag = Hashtag.create(params[:hashtag])
   end
+
+
+
   def show
       hashtag = Hashtag.find(params[id])
       twitter_client = TwitterApi.new

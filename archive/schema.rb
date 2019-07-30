@@ -10,28 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_160946) do
+ActiveRecord::Schema.define(version: 2019_07_22_163348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "hashtags", force: :cascade do |t|
-    t.string "keyword"
-    t.string "list", default: [], array: true
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "id_str"
-    t.string "slug"
-    t.string "name"
-    t.string "uri"
-    t.integer "subscriber_count"
-    t.string "mode"
-    t.string "description"
-    t.string "full_name"
-    t.string "password_digest"
+  create_table "hashtags", force: :cascade do |t|
+    t.string "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tweet_details", force: :cascade do |t|
@@ -63,9 +57,19 @@ ActiveRecord::Schema.define(version: 2019_07_26_160946) do
   end
 
   create_table "twitter_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
-    t.string "screen_name"
-    t.string "topic"
+  end
+
+  create_table "twitter_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usernames", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
