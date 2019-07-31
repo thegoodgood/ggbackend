@@ -3,7 +3,6 @@ class List < ApplicationRecord
 
 
   def new
-    byebug
     # twitter_api = ApiTwitter.new
     new_list = ApiTwitter.new_list(name)
   end

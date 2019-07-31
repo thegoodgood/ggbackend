@@ -5,7 +5,7 @@ require 'json'
 class ApiTwitter < ApplicationRecord
   puts "start"
 
-  # -------------------------CONSTANTS
+  # -------------------------------CONSTANTS------------------------------------
   CONSUMER_KEY= '50zFPAuzH9cqWBfZo6b1MykLn'
   CONSUMER_SECRET= 'UzK7OoeRk6yV5Rz9oCzBaA4PkdvzmYZQv63sGWI4dbrhE6PJcX'
 
@@ -22,6 +22,9 @@ class ApiTwitter < ApplicationRecord
   #
   # OA_TOKEN= '1089338169034788864-XHzGUYwgTdfnGuHeaG1l7OroIn7loi'
   # OA_SECRET= '9JwkudUKKcXJIBNoCo50EIdsGYeYp5zwCB4QfslagGigg'
+
+
+# ---------------------------------URLs----------------------------------------
 
   BASE_URI= 'https://api.twitter.com'
   USER_TWEETS_URL = '/labs/1/tweets'
@@ -59,7 +62,11 @@ class ApiTwitter < ApplicationRecord
   response = []
 
 
-  # def self.timeline
+  def self.timeline options= nil
+    return response =  JSON.parse(@@access_token.request(:get,
+      'https://api.twitter.com/1.1/statuses/lookup.json?id=1050118621198921728/',
+    options)
+    .body)
   #   options = {
   #     headers: {
   #       "Content-Type": "application/json",
@@ -90,7 +97,7 @@ class ApiTwitter < ApplicationRecord
 #     console.log(json);
 # });
     # return response = JSON.parse(:get, `#{BASE_URI}#{USER_TWEETS_URL}?ids=#{GOODGOOD_ID}`)
-  # end
+  end
 
   def self.home_line options=nil
     return response =  JSON.parse(@@access_token.request(:get,
@@ -110,6 +117,10 @@ end
 def self.addSingleMember(list_slug, list_id, screen_name)
   return response = JSON.parse(@@access_token.request(:post, "https://api.twitter.com/1.1/lists/members/create.json?slug=#{list_slug}&owner_screen_name=nygoodgood&screen_name=#{screen_name}")
   .body)
+end
+
+def hashtag_hearch
+
 end
 
 end
