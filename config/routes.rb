@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :lists
   get "/getlists", to: "lists#get_lists"
   get "/lists", to: "lists#index"
+
   resources :users
   post "/login", to: "auth#create"
   post "/signup", to: "users#create"
@@ -9,23 +10,13 @@ Rails.application.routes.draw do
 
   resources :tweets
   get "/get_social", to: "tweets#list"
-  get "/timeline", to: "tweets#new"
+  get "/get_timeline", to: "tweets#get_timeline"
   get "/tweets", to: "tweets#index"
-  get "/socialcommentary", to: "tweets#sc_tweets"
+  post "/get_hashtag_tweets", to: "tweets#get_hashtag_search"
+
+  get "/get_socialcommentary", to: "tweets#get_social"
+
   resources :hashtags
   resources :twitter_accounts
-
-
-
-
-  # namespace :avi do
-  #   namespace :v1 do
-  #     resources :usernames, only: [:create]
-  #     # post "/login", to: "auth#login"
-  #
-  #     # get "/profile", to: "users#profile"
-  #
-  #   end
-  # end
 
 end

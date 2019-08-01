@@ -1,5 +1,6 @@
 class HashtagsController < ApplicationController
 skip_before_action :authorized, only: [:create, :new, :index]
+
   def index
     hashtags = Hashtag.all
     render json: hashtags

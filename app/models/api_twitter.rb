@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'oauth'
-require 'json'
-
 class ApiTwitter < ApplicationRecord
   puts "start"
 
@@ -13,7 +9,7 @@ class ApiTwitter < ApplicationRecord
   OA_SECRET= 'VZC3UQS0Aiy1L5Z8hE6jPlb8sMrARnN6O8CWMHBFXxjdz'
 
   GOODGOOD_ID = '1154600559510458368'
-  BEARER_TOKEN = 'AAAAAAAAAAAAAAAAAAAAAHIL%2FQAAAAAAPC1VDGL%2Bz44BlpFvnVyMrx2HBho%3D8x9hnvEra6QQbgGRAk8sBqrE4NlyVKmPucHBtLSofDSusNPlsj'
+  @@bearer_token = 'Bearer AAAAAAAAAAAAAAAAAAAAAHIL%2FQAAAAAAPC1VDGL%2Bz44BlpFvnVyMrx2HBho%3D8x9hnvEra6QQbgGRAk8sBqrE4NlyVKmPucHBtLSofDSusNPlsj'
 
 
 # GG2 Keys
@@ -26,7 +22,7 @@ class ApiTwitter < ApplicationRecord
 
 # ---------------------------------URLs----------------------------------------
 
-  BASE_URI= 'https://api.twitter.com'
+  @@BASE_URI= 'https://api.twitter.com'
   USER_TWEETS_URL = '/labs/1/tweets'
   HOME_TIMELINE = '/1.1/statuses/home_timeline.json'
   CUSTOM_PROFILE = "https://api.twitter.com/1.1/custom_profiles/new.json"
@@ -45,6 +41,7 @@ class ApiTwitter < ApplicationRecord
   @@access_token = OAuth::AccessToken.from_hash(@@consumer, @@token_hash)
 
 
+
   # ----------------------------
   # def initialize
   #   consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET, {
@@ -61,43 +58,44 @@ class ApiTwitter < ApplicationRecord
 
   response = []
 
+  def self.home_timeline
+    JSON.parse(`twurl /1.1/statuses/home_timeline.json`)
+  end
 
-  def self.timeline options= nil
+  def self.timelineeee options= nil
     return response =  JSON.parse(@@access_token.request(:get,
       'https://api.twitter.com/1.1/statuses/lookup.json?id=1050118621198921728/',
     options)
     .body)
-  #   options = {
-  #     headers: {
-  #       "Content-Type": "application/json",
-  #       'Authorization': `Bearer #{BEARER_TOKEN}`
-  #     }
-  #   }
-  #   byebug
-  #   url = 'https://api.twitter.com/1.1/statuses/home_timeline.json'
-  #   # `#{BASE_URI}#{USER_TWEETS_URL}?ids=#{GOODGOOD_ID}&count=1`
-  #   http_headers = `Bearer BEARER_TOKEN`
-  #
-  #   return response =  JSON.parse(@@access_token.request( :get, url, options )
-  #   .body)
-  # end
-#     const request = require('request');
-#
-#     const options = {
-#
-#       method: 'GET',
-#       headers: {
-#         "Authorization": `Bearer #{BEARER}`,
-#         'Accept': 'application/json'
-#       }
-#     };
-#
-# request(options, function(err, res, body) {
-#     let json = JSON.parse(body);
-#     console.log(json);
-# });
-    # return response = JSON.parse(:get, `#{BASE_URI}#{USER_TWEETS_URL}?ids=#{GOODGOOD_ID}`)
   end
+
+
+  # def self.timeline(which = :nygoodgood, options = {})
+  #   response = HTTParty.get('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
+  #   options.merge!({ basic_auth: @@bearer_token })
+  #   self.class.get("https://api.twitter.com/1.1/statuses/nygoodgood_timeline.json?id=1154600559510458368", options)
+  # end
+
+
+
+  def self.hashtagTweets(hashtag)
+    # byebug
+    query = {
+      "q" => "%#{hashtag}"
+    }
+    headers = {
+      "Authorization" => "Bearer AAAAAAAAAAAAAAAAAAAAAHIL%2FQAAAAAAPC1VDGL%2Bz44BlpFvnVyMrx2HBho%3D8x9hnvEra6QQbgGRAk8sBqrE4NlyVKmPucHBtLSofDSusNPlsj"
+    }
+
+    response = HTTParty.get(
+      "https://api.twitter.com/1.1/search/tweets.json",
+      :query => query,
+      :headers => headers
+    )
+    JSON.parse(response.body)
+  end
+
+
 
   def self.home_line options=nil
     return response =  JSON.parse(@@access_token.request(:get,
@@ -105,6 +103,7 @@ class ApiTwitter < ApplicationRecord
     options)
     .body)
   end
+
 
 
 def self.sc_tweets options=nil
@@ -119,8 +118,5 @@ def self.addSingleMember(list_slug, list_id, screen_name)
   .body)
 end
 
-def hashtag_hearch
-
-end
 
 end
