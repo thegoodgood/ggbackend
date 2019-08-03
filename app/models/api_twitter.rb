@@ -70,14 +70,6 @@ class ApiTwitter < ApplicationRecord
   end
 
 
-  # def self.timeline(which = :nygoodgood, options = {})
-  #   response = HTTParty.get('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
-  #   options.merge!({ basic_auth: @@bearer_token })
-  #   self.class.get("https://api.twitter.com/1.1/statuses/nygoodgood_timeline.json?id=1154600559510458368", options)
-  # end
-
-
-
   def self.hashtagTweets(hashtag)
     # byebug
     query = {
