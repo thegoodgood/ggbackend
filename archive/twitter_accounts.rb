@@ -1,3 +1,0 @@
-class TwitterAccounts < ApplicationRecord
-
-end

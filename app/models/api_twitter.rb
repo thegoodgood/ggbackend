@@ -11,15 +11,6 @@ class ApiTwitter < ApplicationRecord
   GOODGOOD_ID = '1154600559510458368'
   @@bearer_token = 'Bearer AAAAAAAAAAAAAAAAAAAAAHIL%2FQAAAAAAPC1VDGL%2Bz44BlpFvnVyMrx2HBho%3D8x9hnvEra6QQbgGRAk8sBqrE4NlyVKmPucHBtLSofDSusNPlsj'
 
-
-# GG2 Keys
-  # CONSUMER_KEY= '4AevJYT0dv3t6rrPV8bEPNkZC'
-  # CONSUMER_SECRET= 'MmTztnoSF95h6nMoQZrU7ZVHSXNMPxtMTSFYDmHbEmO0OwKTUv '
-  #
-  # OA_TOKEN= '1089338169034788864-XHzGUYwgTdfnGuHeaG1l7OroIn7loi'
-  # OA_SECRET= '9JwkudUKKcXJIBNoCo50EIdsGYeYp5zwCB4QfslagGigg'
-
-
 # ---------------------------------URLs----------------------------------------
 
   @@BASE_URI= 'https://api.twitter.com'
@@ -39,8 +30,6 @@ class ApiTwitter < ApplicationRecord
   }
 
   @@access_token = OAuth::AccessToken.from_hash(@@consumer, @@token_hash)
-
-
 
   # ----------------------------
   # def initialize

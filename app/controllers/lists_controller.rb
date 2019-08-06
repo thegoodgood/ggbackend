@@ -38,13 +38,6 @@ class ListsController < ApplicationController
     end
   end
 
-  # def add_multuple_members(list_name, members_array)
-  #   id = get_list_id(list_name)
-  #   twitter_api.addMembers(id, screen_names)
-  #   end
-  # end
-
-
 
   def search_api
     term = params[:topic]
@@ -57,7 +50,4 @@ class ListsController < ApplicationController
       list_id = list.id
     end
 
-    # def get_params
-    #   params.require(:lists).permit(:id_str, :slug, :name, :uri, :subscriber_count, :mode, :description)
-    # end
   end
