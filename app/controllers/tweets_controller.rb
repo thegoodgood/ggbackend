@@ -1,11 +1,23 @@
 class TweetsController < ApplicationController
 before_action :find_tweet, only: [:show, :update, :destroy, :upvote, :downvote]
-skip_before_action :authorized, only: [:create, :new, :index, :list, :hashtag_search, :get_timeline, :get_hashtag_search, :get_social]
+skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :hashtag_search, :get_timeline, :get_hashtag_search, :get_social]
 
   def index
     tweets = Tweet.order("created_at DESC")
     render json: tweets, include: "**"
   end
+
+  def show
+    render json: @tweet, include: "**"
+  end
+  # def destroy
+  #   if @tweet.upvote
+  #     @tweet.destroy
+  #     render json: @tweet
+  #   else
+  #     render json: { errors: vote.errors.full_messages] }, status: :unauthorized
+  #   end
+  # end
 
   def upvote
     # byebug
@@ -162,7 +174,6 @@ end
     end
     render json: new_timeline
   end
-
 
 
 
