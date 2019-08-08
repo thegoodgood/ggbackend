@@ -31,7 +31,6 @@ def current_user
 end
 
 def logged_in?
-  # byebug
   !!current_user
 end
 
