@@ -60,7 +60,6 @@ class ApiTwitter < ApplicationRecord
 
 
   def self.hashtagTweets(hashtag)
-    # byebug
     query = {
       "q" => "%#{hashtag}"
     }

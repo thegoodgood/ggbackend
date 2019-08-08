@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 before_action :find_tweet, only: [:show, :update, :destroy, :upvote, :downvote]
-skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :hashtag_search, :get_timeline, :get_hashtag_search, :get_social]
+skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :hashtag_search, :get_timeline, :get_hashtag_search, :get_socialcommentary]
 
   def index
     tweets = Tweet.order("created_at DESC")
@@ -9,6 +9,22 @@ skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :has
 
   def show
     render json: @tweet, include: "**"
+  end
+
+  def destroy
+    tweet = Tweet.find(params[:id])
+    downvote = Downvote.find_by(user: current_user, tweet: @tweet)
+    upvote = Upvote.find_by(user: current_user, tweet: @tweet)
+    if downvote
+      downvote.destroy
+      tweet.destroy
+    elsif upvote
+      upvote.destroy
+      tweet.destroy
+    else
+      tweet.destroy
+    end
+    render json: tweet
   end
   # def destroy
   #   if @tweet.upvote
@@ -20,7 +36,6 @@ skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :has
   # end
 
   def upvote
-    # byebug
   vote = Upvote.new(user: current_user, tweet: @tweet)
   if vote.save
     render json: @tweet, include: "**"
@@ -37,21 +52,30 @@ skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :has
 end
 
 def downvote
-  vote = Downvote.new(user: current_user, tweet: @tweet)
-
-  if vote.save
-    render json: @tweet, include: "**"
-  else
-    upvote = Upvote.find_by(user: current_user, tweet: @tweet)
-    upvote.destroy if upvote
-    vote = Downvote.new(user: current_user, tweet: @tweet)
-    if vote.save
-      render json: @tweet, include: "**"
-    else
-      render json: { errors: vote.errors.full_messages }, stats: :unauthorized
-    end
+  upvoted = current_user.upvotes.find_by(tweet_id: @tweet.id)
+  if upvoted
+    upvoted.destroy
+    render json: upvoted.tweet, include: "**"
   end
+
 end
+
+  # old downvote
+#   vote = Downvote.new(user: current_user, tweet: @tweet)
+#
+#   if vote.save
+#     render json: @tweet, include: "**"
+#   else
+#     upvote = Upvote.find_by(user: current_user, tweet: @tweet)
+#     upvote.destroy if upvote
+#     vote = Downvote.new(user: current_user, tweet: @tweet)
+#     if vote.save
+#       render json: @tweet, include: "**"
+#     else
+#       render json: { errors: vote.errors.full_messages }, stats: :unauthorized
+#     end
+#   end
+# end
 
 
 
@@ -74,7 +98,8 @@ end
           user_mentions:tweet['entities']['user_mentions'],
           urls: tweet['entities']['urls'],
           hashtags: tweet['entities']['hashtags'],
-          media: tweet['entities']['media']
+          media: tweet['entities']['media'],
+          topic: "On the Daily"
         )
       else
         Tweet.find_by(tweet_id: tweet['id_str'])
@@ -84,8 +109,7 @@ end
 
   end
 
-  def get_social
-
+  def get_socialcommentary
     tweets_from_list =  ApiTwitter.sc_tweets
     new_sc_tweets = tweets_from_list.map do |tweet|
       if !Tweet.find_by(tweet_id: tweet['id_str'])
@@ -104,7 +128,8 @@ end
           user_mentions:tweet['entities']['user_mentions'],
           urls: tweet['entities']['urls'],
           hashtags: tweet['entities']['hashtags'],
-          media: tweet['entities']['media']
+          media: tweet['entities']['media'],
+          topic: "Social Commentary"
         )
       else
         Tweet.find_by(tweet_id: tweet['id_str'])
@@ -135,7 +160,8 @@ end
           user_mentions:tweet['entities']['user_mentions'],
           urls: tweet['entities']['urls'],
           hashtags: tweet['entities']['hashtags'],
-          media: tweet['entities']['media']
+          media: tweet['entities']['media'],
+          topic: 'hashtag'
         )
       else
         Tweet.find_by(tweet_id: tweet['id_str'])
@@ -150,7 +176,6 @@ end
     timeline = Twitter.sc_tweets
 
     tweets_from_api = tweets_from_api.map do |tweet|
-
       if !Tweet.where(tweet_id: tweet['id_str'])
 
         Tweet.create(
@@ -168,7 +193,8 @@ end
           user_mentions:tweet['entities']['user_mentions'],
           urls: tweet['entities']['urls'],
           hashtags: tweet['entities']['hashtags'],
-          media: tweet['entities']['media']
+          media: tweet['entities']['media'],
+          topic: "Social Commentary"
         )
       end
     end
