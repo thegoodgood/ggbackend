@@ -1,4 +1,4 @@
-require 'byebug'
+
 class ListsController < ApplicationController
   # skip_before_action :authorized, only: [ :new, :get_lists, :index]
   #

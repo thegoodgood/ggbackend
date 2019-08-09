@@ -1,4 +1,4 @@
-require 'byebug'
+
 class UsersController < ApplicationController
 skip_before_action :authorized, only: [:create, :index]
 
@@ -23,7 +23,7 @@ skip_before_action :authorized, only: [:create, :index]
   end
 
   # def edit
-  #   byebug
+  
   #   user = User.find(params[:id])
   # end
 

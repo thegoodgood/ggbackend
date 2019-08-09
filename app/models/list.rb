@@ -1,4 +1,4 @@
-require 'byebug'
+
 class List < ApplicationRecord
 
 
@@ -9,7 +9,6 @@ class List < ApplicationRecord
 
   def add_single_member(list_name, members_array=[])
 
-    byebug
     # list_id = List.where(name:list_name).map(&:id_str)[0].to_i
     # slug = List.where(name:name).map(&:slug)[0]
 
