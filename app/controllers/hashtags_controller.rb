@@ -1,5 +1,5 @@
 class HashtagsController < ApplicationController
-skip_before_action :authorized, only: [:create, :new, :index]
+skip_before_action :authorized, only: [:create, :index]
 
   def index
     hashtags = Hashtag.all

@@ -1,5 +1,5 @@
 class TwitterAccountsController < ApplicationController
-skip_before_action :index
+skip_before_action :authorized, only: [:index]
 before_action :get_params
 
   def index
