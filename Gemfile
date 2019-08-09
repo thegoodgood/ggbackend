@@ -43,25 +43,25 @@ gem 'rack-cors'
 
 
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # from heroku buildpack
-  gem "toml-rb"
-  gem "heroku_hatchet"
-  gem "rspec-core"
-  gem "rspec-expectations"
-  gem "excon"
-  gem "rake"
-  gem "parallel_tests"
-  gem 'rspec-retry'
-  gem "netrc"
-  gem "git", github: "hone/ruby-git", branch: "master"
-  gem 'json', '~> 2.0.2'
-  gem 'ci-queue'
-  gem 'redis'
-end
+# group :development, :test do
+#   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+#   # gem 'byebug'
+#   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+#   # from heroku buildpack
+#   gem "toml-rb"
+#   gem "heroku_hatchet"
+#   gem "rspec-core"
+#   gem "rspec-expectations"
+#   gem "excon"
+#   gem "rake"
+#   gem "parallel_tests"
+#   gem 'rspec-retry'
+#   gem "netrc"
+#   gem "git", github: "hone/ruby-git", branch: "master"
+#   gem 'json', '~> 2.0.2'
+#   gem 'ci-queue'
+#   gem 'redis'
+# end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
