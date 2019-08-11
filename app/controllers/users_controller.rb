@@ -1,4 +1,4 @@
-
+require 'pry'
 class UsersController < ApplicationController
 skip_before_action :authorized, only: [:create, :index]
 
@@ -8,8 +8,9 @@ skip_before_action :authorized, only: [:create, :index]
   end
 
   def create
-    user = User.create(get_params)
+    user = User.new(username:params[:username], password: params[:password])
     if user.valid?
+      user.save
       render json: { token: encode_token(user_payload(user))}
     else
       render json: { errors: user.errors.full_messages }
@@ -23,7 +24,7 @@ skip_before_action :authorized, only: [:create, :index]
   end
 
   # def edit
-  
+
   #   user = User.find(params[:id])
   # end
 

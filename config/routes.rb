@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # get "/lists", to: "lists#index"
 
   root to: "tweets#index"
-  
+
   resources :users
   post "/login", to: "auth#create"
   post "/signup", to: "users#create"
