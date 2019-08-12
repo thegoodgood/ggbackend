@@ -21,19 +21,20 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-development:
-  <<: *default
-  database: ggbackend_development
 # development:
-#   adapter: postgresql
-#   host: localhost
-#   username: user
-#   database: app-dev
+#   <<: *default
+#   database: ggbackend_development
+development:
+  adapter: postgresql
+  host: localhost
+  username: ggbackend
+  database: ggbackend_development
+  password:
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user that initialized the database.
-  #username: ggbackend
+
 
   # The password associated with the postgres role (username).
   #password:
@@ -84,6 +85,10 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: ggbackend_production
+  pool: 5
   username: ggbackend
-  password: <%= ENV['GGBACKEND_DATABASE_PASSWORD'] %>
+  password:
+    # <%= ENV['GGBACKEND_DATABASE_PASSWORD'] %>

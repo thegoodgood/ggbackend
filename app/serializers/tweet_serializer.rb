@@ -11,4 +11,9 @@ class TweetSerializer < ActiveModel::Serializer
     tweet.downvotes.count
   end
 
+  def display_url
+    tweet= self.object
+    tweet["urls"]
+  end
+
 end
