@@ -99,6 +99,8 @@ end
           urls: tweet['entities']['urls'],
           hashtags: tweet['entities']['hashtags'],
           media: tweet['entities']['media'],
+          entities: tweet['entities'],
+          extended_entities: tweet['extended_entities'],
           topic: "On the Daily"
         )
       else

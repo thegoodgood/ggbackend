@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_030121) do
+ActiveRecord::Schema.define(version: 2019_08_13_044816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_08_08_030121) do
     t.string "media", default: [], array: true
     t.datetime "updated_at", null: false
     t.string "topic"
+    t.string "entities"
+    t.string "extended_entities"
   end
 
   create_table "twitter_accounts", force: :cascade do |t|
