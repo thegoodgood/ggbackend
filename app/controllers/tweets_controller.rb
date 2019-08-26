@@ -3,7 +3,7 @@ before_action :find_tweet, only: [:show, :update, :destroy, :upvote, :downvote]
 skip_before_action :authorized, only: [:create, :show, :new, :index, :list, :hashtag_search, :get_timeline, :get_hashtag_search, :get_socialcommentary]
 
   def index
-    tweets = Tweet.order("created_at DESC").take(20)
+    tweets = Tweet.order("created_at DESC").take(40)
     render json: tweets, include: "**"
   end
 

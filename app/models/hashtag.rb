@@ -1,3 +1,3 @@
 class Hashtag < ApplicationRecord
-  validates :name, uniqueness: true
+  validates :keyword, uniqueness: true
 end

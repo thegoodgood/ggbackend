@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :articles
   resources :lists
   # get "/getlists", to: "lists#get_lists"
   # get "/lists", to: "lists#index"
