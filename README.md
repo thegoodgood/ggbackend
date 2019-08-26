@@ -23,23 +23,23 @@ Open [http://localhost:3000](http://localhost:3000) to view the API in the brows
 
 #### Users
 - CRUD
-– login / signup
-– profile
+- login / signup
+- profile
 
 #### Tweets
-– tweets
-– upvote / downvote
-– get_timeline
-– get_socialcommentary
-– get_hashtag_search
+- tweets
+- upvote / downvote
+- get_timeline
+- get_socialcommentary
+- get_hashtag_search
 
 #### Hashtags
 - CRUD
 
 #### Twitter Search
-– get_timeline
-– get_socialcommentary
-– get_hashtag_search
+- get_timeline
+- get_socialcommentary
+- get_hashtag_search
 
 ## Features
 
