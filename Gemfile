@@ -6,6 +6,7 @@ gem 'httparty'
 # gem 'rest-client'
 gem 'twurl'
 gem 'pry'
+gem 'pg'
 # gem 'dotenv-rails', groups: [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.2.2'
@@ -72,6 +73,7 @@ end
 
 group :production, :test do
     gem 'rspec-rails', '~> 3.5'
+    gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
