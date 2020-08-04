@@ -31,6 +31,7 @@ def current_user
 end
 
 def logged_in?
+  puts current_user
   !!current_user
 end
 
