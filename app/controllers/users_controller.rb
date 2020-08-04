@@ -20,9 +20,9 @@ skip_before_action :authorized, only: [:create, :index]
 
   def profile
 
-    # render json: { current_user: UserSerializer.new(current_user) }, status: :accepted #<----sylwia way
+    render json: { current_user: UserSerializer.new(current_user) }, status: :accepted #<----sylwia way
     
-    render json: self.current_user(), include: "**" #<--Kevin way
+    # render json: self.current_user(), include: "**" #<--Kevin way
   end
 
   # def edit
