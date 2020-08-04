@@ -1,4 +1,10 @@
 Rails.application.configure do
+   # Whitelist one hostname
+   config.hosts << "thegoodgood.herokuapp.com"
+   # Whitelist a test domain. Rails adds \A and \z around
+   # your regular expressions.
+   config.hosts << /application\.local/
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
