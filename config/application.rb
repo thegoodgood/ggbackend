@@ -17,6 +17,7 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 # Bundler.require
 Bundler.require(*Rails.groups)
+# Bundler.require(*Rails.groups(:assets => %w(development test)))
 
 
 module Ggbackend
