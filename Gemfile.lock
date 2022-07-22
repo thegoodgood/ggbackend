@@ -182,7 +182,7 @@ GEM
     thread_safe (0.3.6)
     twurl (0.9.5)
       oauth (~> 0.4)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
